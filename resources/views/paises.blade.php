@@ -11,31 +11,31 @@
     <center><h1>Paises del mundo</h1></center>
     <table class="table table-bordered table-stripped">
         <thead>
-            <tr>
-                <td>Nombre:</td>
-                <td>Capital:</td>
-                <td>Moneda:</td>
-                <td>población:</td>
-                <td>Ciudades Importantes:</td>
+            <tr class="bg-dark text-light">
+                <td class=""><b>Nombre:</b></td>
+                <td><b>Capital:</b></td>
+                <td><b>Moneda:</b></td>
+                <td><b>población:</b></td>
+                <td class=""><b>Ciudades Importantes:</b></td>
             </tr>
         </thead>    
         <tbody>
             @foreach($paises as $p => $infopais)
                 <tr>
-                    <td rowspan='{{ count($infopais["ciudadesprincipales"]) }}'>
+                    <td rowspan='{{ count($infopais["ciudadesprincipales"]) }}' class="text-primary">
                         {{ $p }}
                     </td>
-                    <td rowspan='{{ count($infopais["ciudadesprincipales"]) }}'>
+                    <td rowspan='{{ count($infopais["ciudadesprincipales"]) }}' class="text-success">
                         {{ $infopais["capital"] }}
                     </td>
-                    <td rowspan='{{ count($infopais["ciudadesprincipales"]) }}'>
+                    <td rowspan='{{ count($infopais["ciudadesprincipales"]) }}' class="text-danger">
                         {{ $infopais["moneda"]}}
                     </td>
-                    <td rowspan='{{ count($infopais["ciudadesprincipales"]) }}'>
+                    <td rowspan='{{ count($infopais["ciudadesprincipales"]) }}' class="text-info">
                         {{ $infopais["poblacion"]." Millones" }}
                     </td>
                     @foreach($infopais["ciudadesprincipales"] as $ciudad)
-                        <th>
+                        <th class="bg-warning">
                             {{ $ciudad }}
                         </th>
                     </tr>
