@@ -34,16 +34,19 @@ Route::get('pais',function(){
             "capital" => "Brasilia",
             "moneda" => "Reales",
             "poblacion" => 214,
-            "ciudades principales" => [
+            "ciudadesprincipales" => [
                 "Rio de Janeiro",
                 "Sao Paulo",
+                "Recife",
+                "Porto Alegre",
+                "Fortaleza"
             ]
         ],
         "Colombia" => [
             "capital" => "Bogota",
             "moneda" => "Peso colombiano",
             "poblacion" => 51,
-            "ciudades principales" => [
+            "ciudadesprincipales" => [
                 "Medellin",
                 "Cali",
                 "Barranquilla"
@@ -53,7 +56,7 @@ Route::get('pais',function(){
             "capital" => "Lima",
             "moneda" => "Sol",
             "poblacion" => 32,
-            "ciudades principales" => [
+            "ciudadesprincipales" => [
                 "Arequipa",
                 "Trujillo"
             ]
@@ -62,7 +65,7 @@ Route::get('pais',function(){
             "capital" => "Asunción",
             "moneda" => "guarani",
             "poblacion" => 7,
-            "ciudades principales" => [
+            "ciudadesprincipales" => [
                 "Luque"
             ]
         ],
@@ -70,7 +73,7 @@ Route::get('pais',function(){
             "capital" => "Berlín",
             "moneda" => "Euro",
             "poblacion" => 83,
-            "ciudades principales" => [
+            "ciudadesprincipales" => [
                 "Dormund",
                 "Frankfurt",
                 "Hamburgo"
@@ -80,7 +83,7 @@ Route::get('pais',function(){
             "capital" => "París",
             "moneda" => "Euro",
             "poblacion" => 67,
-            "ciudades principales" => [
+            "ciudadesprincipales" => [
                 "Lyon",
                 "Marsella",
             ]
