@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Marca;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductoController extends Controller
 {
@@ -40,9 +41,49 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        //Establecer las reglas de validación que apliquen a cada campo
+        $reglas = [
+            "nombre" => 'required|alpha',
+            "desc" => 'required|min:20|max:50',
+            "precio" => 'required|numeric',
+            "marca" => 'required',
+            "categoria" => 'required'
+        ];
+
+        $mensajes = [
+            "required" => "Campo obligatorio",
+            "alpha" => "Solo se pueden usar letras",
+            "min" => "Mínimo de caracteres: 20",
+            "max" => "Máximo de caracteres: 50",
+            "numeric" => "Solo se pueden usar números"
+        ];
+
+        //Crear el objeto validador
+        $v = validator::make($r->all(),$reglas,$mensajes);
+
+        //Validar la input data
+        if ($v -> fails()) {
+            //Validación Fallida
+                //Redireccionar al formulario
+                return redirect('productos/create')->withErrors($v)->withInput();
+
+        } else {
+            //Validación Correcta
+            //Crear un nuevo producto
+                $p = new Producto;
+            //Asignar valores a los atributos del objeto
+                $p -> nombre = $r -> nombre;
+                $p -> desc = $r -> desc;
+                $p -> precio = $r -> precio;
+                $p -> marca_id = $r -> marca;
+                $p -> categoria_id = $r -> categoria;
+            //Guardar en db
+                $p -> save();
+            //Redireccionar al formulario con mensaje de exito (session)
+                return redirect('productos/create')->with('msj',"Se ha registrado con exito el producto");
+        }
     }
 
     /**
