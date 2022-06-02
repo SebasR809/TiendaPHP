@@ -2,7 +2,7 @@
 @section('contenido')
 @if( session('msj'))
     <div class="row">
-        <span>{{ session('msj') }}</span>
+        <span class="red-text text-darken-1">{{ session('msj') }}</span>
     </div>
 @endif
 <div class="row">
