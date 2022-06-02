@@ -9,7 +9,7 @@
     <h1 class="blue-grey-text text-darken-2">Agregar Producto</h1>
 </div>
 <div class="row">
-    <form class="col s12" method="post" action="{{ route('productos.store') }}">
+    <form class="col s12" method="post" action="{{ route('productos.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="input-field col s7">
@@ -35,7 +35,7 @@
         <div class="row">
             <div class="input-field col s7">
                 <select name="marca" id="marca">
-                        <option value="">Elija marca</option>
+                        <option value="">Elija la marca</option>
                     @foreach($marcas as $m)
                         <option value="{{ $m -> id }}" @select(old('marca') == $m)>{{ $m -> nombre }}</option>
                     @endforeach
@@ -47,7 +47,7 @@
         <div class="row">
         <div class="input-field col s7">
                 <select name="categoria" id="categoria">
-                    <option value="">Elija Categoria</option>
+                    <option value="">Elija la Categoria</option>
                     @foreach($categorias as $c)
                         <option value="{{ $c -> id }}">{{ $c -> nombre }}</option>
                     @endforeach
@@ -60,12 +60,13 @@
             <div class="file-field input-field col s7">
                 <div class="btn">
                     <span>Imagen</span>
-                    <input type="file" name="img" id="img">
+                    <input type="file" name="imagen" id="imagen">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
                 </div>
             </div>
+            <span class="red-text text-darken-1">{{ $errors->first('imagen') }}</span>
         </div>  
         <div class="row">
         <button class="btn waves-effect waves-light" type="submit" name="action">Agregar</button>

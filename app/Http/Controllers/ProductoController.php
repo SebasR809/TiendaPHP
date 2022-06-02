@@ -43,13 +43,19 @@ class ProductoController extends Controller
      */
     public function store(Request $r)
     {
+        //Analizar la input data (imagen) 
+            /*echo "<pre>";
+            var_dump($r->imagen);
+            echo "</pre>";*/
+
         //Establecer las reglas de validación que apliquen a cada campo
         $reglas = [
             "nombre" => 'required|alpha',
             "desc" => 'required|min:20|max:50',
             "precio" => 'required|numeric',
             "marca" => 'required',
-            "categoria" => 'required'
+            "categoria" => 'required',
+            "imagen" => 'required|image'
         ];
 
         $mensajes = [
@@ -57,9 +63,10 @@ class ProductoController extends Controller
             "alpha" => "Solo se pueden usar letras",
             "min" => "Mínimo de caracteres: 20",
             "max" => "Máximo de caracteres: 50",
-            "numeric" => "Solo se pueden usar números"
-        ];
-
+            "numeric" => "Solo se pueden usar números",
+            "image" => "Solo subir archivos de imagen (png, jpg, etc)"
+        ]; 
+ 
         //Crear el objeto validador
         $v = validator::make($r->all(),$reglas,$mensajes);
 
@@ -70,12 +77,20 @@ class ProductoController extends Controller
                 return redirect('productos/create')->withErrors($v)->withInput();
 
         } else {
+            //Acceder a propiedades del archivo que se carga
+                $arc = $r -> imagen;
+                $nom_arc = $arc -> getClientOriginalName();
+            //Establecer la ubicación donde se almacenará el archivo
+                $ruta_public = public_path()."/img";
+            //Mover el archivo a la ruta que queramos
+                $arc -> move($ruta_public, $nom_arc);
             //Validación Correcta
             //Crear un nuevo producto
                 $p = new Producto;
             //Asignar valores a los atributos del objeto
                 $p -> nombre = $r -> nombre;
                 $p -> desc = $r -> desc;
+                $p -> imagen = $nom_arc;
                 $p -> precio = $r -> precio;
                 $p -> marca_id = $r -> marca;
                 $p -> categoria_id = $r -> categoria;
