@@ -10,15 +10,15 @@
         </div>
     <div class="card-content">
         <span class="card-title activator grey-text text-darken-4">{{ $p -> nombre }}<i class="material-icons right">Ver más...</i></span>
-            <sub>Precio</sub><p>{{ $p -> precio}}</p>
-            <p><a href="#">Agregar al carrito</a></p>
+            <p><a href="{{ url('productos/'.$p -> id)}}">Ver Detalles</a></p>
     </div>
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4">{{ $p -> nombre }}<i class="material-icons right">Fechar</i></span>
         <ul>
             <li><sub>Precio</sub>{{ $p -> desc }}</li>
             <li>{{ $p -> precio}}</li>
-            <li>{{ $p -> categoria() -> nombre }}</li>
+            <li>{{ $p -> Categoria -> nombre }}</li>
+            <li>{{ $p -> Marca -> nombre }}</li>
         </ul>
     </div>
   </div>
